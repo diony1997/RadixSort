@@ -46,26 +46,24 @@ public class Radix {
         Fila vetor2[] = new Fila[10];
         inicializador(vetor2);
         
-        //1° Base
-        for (int i = 0; i < vetor.length; i++) {
-            int valor = vetor[i] % 10;
-            vetor2[valor].enqueue(vetor[i]);
+         for (int j = 0; j < 3; j++) {
+            int valor;
+            for (int i = 0; i < vetor.length; i++) {
+                switch (j) {
+                    case 0:
+                        valor = vetor[i] % 10;
+                        break;
+                    case 1:
+                        valor = (vetor[i] % 100) / 10;
+                        break;
+                    default:
+                        valor = vetor[i] / 100;
+                        break;
+                }
+                vetor2[valor].enqueue(vetor[i]);
+            }
+            dequeue(vetor, vetor2);
         }
-        dequeue(vetor, vetor2);
-
-        //2° Base
-        for (int i = 0; i < vetor.length; i++) {
-            int valor = (vetor[i] % 100) / 10;
-            vetor2[valor].enqueue(vetor[i]);
-        }
-        dequeue(vetor, vetor2);
-
-        //3° Base
-        for (int i = 0; i < vetor.length; i++) {
-            int valor = vetor[i] / 100;
-            vetor2[valor].enqueue(vetor[i]);
-        }
-        dequeue(vetor, vetor2);
 
         System.out.println(imprimir(vetor));
 
